@@ -56,7 +56,7 @@ public class MovementController : MonoBehaviour
         {
             Debug.Log("Not Grounded");
 
-            if (!Physics.Raycast(transform.position, Vector3.down, 0.5f))
+            if (!Physics.Raycast(transform.position, Vector3.down, 0.2f))
             {
                 animator.SetInteger("State", (int)State.Falling);
             }
@@ -74,7 +74,11 @@ public class MovementController : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             remainingJumps--;
-            animator.SetTrigger("Jump");
+            if (remainingJumps == 0)
+            {
+                animator.SetTrigger("Jump");
+            }
+
         }
 
 
